@@ -1,13 +1,11 @@
 let time = document.querySelectorAll('span')
 let btn = document.querySelectorAll('button');
-let timer = true; 
+let timer = null; 
 let hour = 0, minute = 0, second = 0, counter = 0;
 
-//todo ---------- To start the stopwatch ----------
-btn[0].addEventListener('click', function(e){
-    timer = true;
-    setInterval(() => {
-        if(timer == true){
+function stopwatch(){
+    // setTime = setInterval(() => {
+        // if(timer == true){
             counter++;
             if(counter == 100){
                 second++;
@@ -33,18 +31,32 @@ btn[0].addEventListener('click', function(e){
             time[2].innerHTML = second;
             time[1].innerHTML = minute;
             time[0].innerHTML = hour;
-        }        
-    }, 10);    
+            // setTimeout(stopwatch, 10);
+        // }      
+
+    // }, 10); 
+}
+
+
+//todo ---------- To start the stopwatch ----------
+btn[1].addEventListener('click', function(e){
+    if(timer != null){
+        clearInterval(timer);
+    }
+    timer = setInterval(stopwatch, 10);
+   
 });
 
 //todo ---------- To stop the stopwatch ----------
-btn[1].addEventListener('click', function(){
-        timer = false;
+btn[0].addEventListener('click', function(){
+    // timer = false;
+    clearInterval(timer);
 });
 
 //todo ---------- To reset the stopwatch ----------
 btn[2].addEventListener('click', function(){
-    timer = false;
+    // timer = false;
+    clearInterval(timer);
     hour = 0, minute = 0, second = 0, counter = 0;
 
     time[3].innerText = "00";
